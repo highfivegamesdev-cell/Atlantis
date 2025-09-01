@@ -4,6 +4,8 @@ import { Scene1, Scene2, Scene3 } from "@/scenes";
 import { scenesConfig } from "@/scenes/config/scenesConfig";
 import { createGameMachine } from "@/scenes/config/gameMachine";
 
+import { SceneWrapper } from "@/components/layout/SceneWrapper";
+
 const gameMachine = createGameMachine();
 
 function App() {
@@ -17,27 +19,33 @@ function App() {
   switch (currentScene.id) {
     case "scene1":
       return (
-        <Scene1
-          puzzles={currentScene.puzzles}
-          send={send}
-          solvedPuzzles={solvedPuzzles}
-        />
+        <SceneWrapper backgroundUrl="/images/scenes/scene1/scene1-background.png">
+          <Scene1
+            puzzles={currentScene.puzzles}
+            send={send}
+            solvedPuzzles={solvedPuzzles}
+          />
+        </SceneWrapper>
       );
     case "scene2":
       return (
-        <Scene2
-          puzzles={currentScene.puzzles}
-          send={send}
-          solvedPuzzles={solvedPuzzles}
-        />
+        <SceneWrapper backgroundUrl="/images/scenes/scene1/scene1-background.png">
+          <Scene2
+            puzzles={currentScene.puzzles}
+            send={send}
+            solvedPuzzles={solvedPuzzles}
+          />
+        </SceneWrapper>
       );
     case "scene3":
       return (
-        <Scene3
-          puzzles={currentScene.puzzles}
-          send={send}
-          solvedPuzzles={solvedPuzzles}
-        />
+        <SceneWrapper backgroundUrl="/images/scenes/scene1/scene1-background.png">
+          <Scene3
+            puzzles={currentScene.puzzles}
+            send={send}
+            solvedPuzzles={solvedPuzzles}
+          />
+        </SceneWrapper>
       );
     default:
       return <h2>Game over</h2>;
