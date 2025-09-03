@@ -9,20 +9,29 @@ type GameContext = {
   currentScene: string;
 };
 
+export const GameEventTypes = {
+  solvePuzzle: "SOLVE_PUZZLE",
+  next: "NEXT",
+} as const;
+
 export type GameEvent =
-  | { type: "SOLVE_PUZZLE"; puzzleId: string; answer: string }
-  | { type: "NEXT" };
+  | {
+      type: typeof GameEventTypes.solvePuzzle;
+      puzzleId: string;
+      answer?: string;
+    }
+  | { type: typeof GameEventTypes.next };
 
 const buildScenesStates = (room: SceneConfig) => {
   return {
     [room.id]: {
       on: {
         SOLVE_PUZZLE: {
-          actions: assign((context: GameContext, event: GameEvent) => {
-            if (event.type !== "SOLVE_PUZZLE") return context;
+          actions: assign(({ context, event }) => {
+            if (event.type !== GameEventTypes.solvePuzzle) return context;
 
             const puzzle = room.puzzles.find(
-              (puzzle) => (puzzle.id = event.puzzleId)
+              (puzzle) => puzzle.id === event.puzzleId
             );
             if (!puzzle) return context;
 

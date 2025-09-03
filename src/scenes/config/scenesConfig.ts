@@ -10,11 +10,18 @@ export type SceneConfig = {
   next?: string;
 };
 
+export const Puzzles = {
+  sudoku: {
+    name: "sudoku",
+    answer: "SOLVED",
+  },
+} as const;
+
 export const scenesConfig: SceneConfig[] = [
   {
     id: "scene1",
     puzzles: [
-      { id: "puzzle1", answer: "123" },
+      { id: Puzzles.sudoku.name, answer: Puzzles.sudoku.answer },
       { id: "puzzle2", answer: "XYZ", item: "Klucz 🔑" },
       { id: "puzzle3", answer: "CODE" },
     ],
