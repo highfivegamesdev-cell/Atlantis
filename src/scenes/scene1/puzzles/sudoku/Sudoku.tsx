@@ -29,6 +29,7 @@ export const Sudoku = ({ initialGrid, solutionGrid, send, close }: Props) => {
     const isSolved = userGrid.every((row, rowIndex) =>
       row.every((value, colIndex) => value === solutionGrid[rowIndex][colIndex])
     );
+
     if (isSolved) {
       send({
         type: GameEventTypes.solvePuzzle,
@@ -85,7 +86,7 @@ export const Sudoku = ({ initialGrid, solutionGrid, send, close }: Props) => {
       (cell) => cell.row === row && cell.col === col
     );
     const baseClass =
-      "w-[50px] h-[50px] text-center text-xl font-bold text-white [text-shadow:0_0_10px_#99ffff,0_0_20px_#99ffff,0_0_40px_#99ffff]";
+      "w-[20px] h-[20px] md:w-[35px] md:h-[35px] lg:w-[50px] 3xl:w-[80px] lg:h-[50px] 3xl:h-[80px] outline-none text-center text-xl font-bold text-white [text-shadow:0_0_10px_#99ffff]";
     const errorClass = isError
       ? "[text-shadow:0_0_10px_#ff4d4d,0_0_20px_#ff4d4d,0_0_40px_#ff4d4d]"
       : "";
@@ -102,35 +103,26 @@ export const Sudoku = ({ initialGrid, solutionGrid, send, close }: Props) => {
   return (
     <PuzzleWrapper backgroundUrl="/images/scenes/scene1/puzzles/sudoku-background.png">
       <button
-        onClick={() => {
-          send({
-            type: GameEventTypes.solvePuzzle,
-            puzzleId: Puzzles.sudoku.name,
-            answer: Puzzles.sudoku.answer,
-          });
-
-          close();
-        }}
+        onClick={close}
+        className="absolute top-[1%] right-[3%] text-white hover:text-black text-4xl font-bold hover:cursor-pointer"
       >
-        Solve sudoku
+        ×
       </button>
 
-      <div className="absolute top-[40px] left-[252px]">
-        <div className="grid grid-cols-9 gap-[6px]">
-          {userGrid.map((rowData, row) =>
-            rowData.map((_, col) => (
-              <input
-                key={`${row}-${col}`}
-                type="text"
-                maxLength={1}
-                value={getDisplayValue(row, col)}
-                onChange={(e) => handleChange(row, col, e)}
-                disabled={isCellDisabled(row, col)}
-                className={getCellClass(row, col)}
-              />
-            ))
-          )}
-        </div>
+      <div className="absolute top-[7%] left-[25.5%] grid grid-cols-9 gap-[3px] md:gap-[4px] lg:gap-[6px] 3xl:gap-[10px] overflow-auto">
+        {userGrid.map((rowData, row) =>
+          rowData.map((_, col) => (
+            <input
+              key={`${row}-${col}`}
+              type="text"
+              maxLength={1}
+              value={getDisplayValue(row, col)}
+              onChange={(e) => handleChange(row, col, e)}
+              disabled={isCellDisabled(row, col)}
+              className={getCellClass(row, col)}
+            />
+          ))
+        )}
       </div>
     </PuzzleWrapper>
   );

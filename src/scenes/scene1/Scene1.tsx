@@ -44,7 +44,9 @@ export const Scene1 = ({ puzzles, solvedPuzzles, send }: Props) => {
       <Modal
         isOpen={isSudokuOpen}
         onRequestClose={closeSudoku}
-        className="w-auto h-auto flex justify-center"
+        className="relative overflow-auto max-w-full max-h-full rounded-lg"
+        overlayClassName="fixed inset-0 bg-white/50 flex items-center justify-center"
+        shouldCloseOnOverlayClick={false}
       >
         <Sudoku
           initialGrid={initialGrid}
