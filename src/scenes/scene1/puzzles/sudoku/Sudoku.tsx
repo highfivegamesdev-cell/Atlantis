@@ -2,14 +2,13 @@ import { useState, useEffect } from "react";
 
 import { PuzzleWrapper } from "@/components/layout/PuzzleWrapper";
 import type { SudokuGrid } from "@/scenes/scene1/puzzles/sudoku/config";
-import type { GameEvent } from "@/scenes/config/gameMachine";
 import { Puzzles } from "@/scenes/config/scenesConfig";
 import { GameEventTypes } from "@/scenes/config/gameMachine";
+import { useGame } from "@/scenes/config/useGame";
 
 type Props = {
   initialGrid: SudokuGrid;
   solutionGrid: SudokuGrid;
-  send: (event: GameEvent) => void;
   close: () => void;
 };
 
@@ -19,7 +18,9 @@ type ErrorCell = {
   value: number;
 };
 
-export const Sudoku = ({ initialGrid, solutionGrid, send, close }: Props) => {
+export const Sudoku = ({ initialGrid, solutionGrid, close }: Props) => {
+  const { send } = useGame();
+
   const [userGrid, setUserGrid] = useState(
     initialGrid.map((row) => row.slice())
   );
@@ -36,8 +37,6 @@ export const Sudoku = ({ initialGrid, solutionGrid, send, close }: Props) => {
         puzzleId: Puzzles.sudoku.name,
         answer: Puzzles.sudoku.answer,
       });
-
-      close();
     }
   }, [userGrid, solutionGrid]);
 

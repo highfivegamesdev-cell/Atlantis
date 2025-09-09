@@ -1,15 +1,15 @@
-import { useMachine } from "@xstate/react";
+import Modal from "react-modal";
 
 import { Scene1, Scene2, Scene3 } from "@/scenes";
 import { scenesConfig } from "@/scenes/config/scenesConfig";
-import { createGameMachine } from "@/scenes/config/gameMachine";
+import { useGame } from "@/scenes/config/useGame";
 
 import { SceneWrapper } from "@/components/layout/SceneWrapper";
 
-const gameMachine = createGameMachine();
+Modal.setAppElement("#root");
 
 function App() {
-  const [state, send] = useMachine(gameMachine);
+  const { state, send } = useGame();
 
   const { solvedPuzzles } = state.context;
 
@@ -20,11 +20,7 @@ function App() {
     case "scene1":
       return (
         <SceneWrapper backgroundUrl="/images/scenes/scene1/scene1-background.png">
-          <Scene1
-            puzzles={currentScene.puzzles}
-            send={send}
-            solvedPuzzles={solvedPuzzles}
-          />
+          <Scene1 puzzles={currentScene.puzzles} />
         </SceneWrapper>
       );
     case "scene2":

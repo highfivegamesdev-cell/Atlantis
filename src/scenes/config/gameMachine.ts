@@ -3,7 +3,7 @@ import { createMachine, assign } from "xstate";
 import { scenesConfig } from "@/scenes/config/scenesConfig";
 import type { SceneConfig } from "@/scenes/config/scenesConfig";
 
-type GameContext = {
+export type GameContext = {
   // inventory: string[];
   solvedPuzzles: Record<string, boolean>;
   currentScene: string;
@@ -69,6 +69,9 @@ export const createGameMachine = () => {
   return createMachine({
     id: "game",
     initial: scenesConfig[0].id,
+    types: {} as {
+      context: GameContext;
+    },
     context: {
       solvedPuzzles: {},
       currentScene: scenesConfig[0].id,

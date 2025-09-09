@@ -1,7 +1,4 @@
-import Modal from "react-modal";
-
 import type { Puzzle } from "@/scenes/config/scenesConfig";
-import type { GameEvent } from "@/scenes/config/gameMachine";
 import { GameEventTypes } from "@/scenes/config/gameMachine";
 import { useModal } from "@/lib/hooks/useModal";
 import { Sudoku } from "@/scenes/scene1/puzzles/sudoku/Sudoku";
@@ -9,52 +6,59 @@ import {
   initialGrid,
   solutionGrid,
 } from "@/scenes/scene1/puzzles/sudoku/config";
+import { useGame } from "@/scenes/config/useGame";
+import { PuzzleCompleted } from "@/components/display/PuzzleCompleted/PuzzleCompleted";
+import { Puzzles } from "@/scenes/config/scenesConfig";
+import { puzzleConfig } from "@/scenes/scene1/config";
+import { PuzzleModal } from "@/components/display/Modal/PuzzleModal";
+import { PuzzleTrigger } from "@/components/action/Button/PuzzleTrigger";
 
 type Props = {
   puzzles: Puzzle[];
-  solvedPuzzles: Record<string, boolean>;
-  send: (event: GameEvent) => void;
 };
 
-Modal.setAppElement("#root");
-
-export const Scene1 = ({ puzzles, solvedPuzzles, send }: Props) => {
+export const Scene1 = ({ puzzles }: Props) => {
+  const { state, send } = useGame();
   const {
     isModalOpen: isSudokuOpen,
     openModal: openSudoku,
     closeModal: closeSudoku,
   } = useModal();
-  // const allPuzzlesSolved = puzzles.every((p) => solvedPuzzles[p.id]);
-  const allPuzzlesSolved = true;
+
+  const { solvedPuzzles } = state.context;
+  const allPuzzlesSolved = puzzles.every((p) => solvedPuzzles[p.id]);
 
   return (
     <div className="w-full h-full relative">
-      <h1>Scene 1</h1>
-
       {allPuzzlesSolved && (
         <button onClick={() => send({ type: GameEventTypes.next })}>
           Next scene
         </button>
       )}
 
-      <button className="absolute top-[70%] right-[10%]" onClick={openSudoku}>
-        Open Modal
-      </button>
+      <PuzzleTrigger
+        image={puzzleConfig.sudoku.thumbnail}
+        alt="Open Sudoku"
+        positionTop="62%"
+        positionRight="10%"
+        action={openSudoku}
+      />
 
-      <Modal
-        isOpen={isSudokuOpen}
-        onRequestClose={closeSudoku}
-        className="relative overflow-auto max-w-full max-h-full rounded-lg"
-        overlayClassName="fixed inset-0 bg-white/50 flex items-center justify-center"
-        shouldCloseOnOverlayClick={false}
-      >
-        <Sudoku
-          initialGrid={initialGrid}
-          solutionGrid={solutionGrid}
-          send={send}
-          close={closeSudoku}
-        />
-      </Modal>
+      <PuzzleModal isPuzzleOpen={isSudokuOpen} closePuzzle={closeSudoku}>
+        {solvedPuzzles[Puzzles.sudoku.name] ? (
+          <PuzzleCompleted
+            text={puzzleConfig.sudoku.summary}
+            image={puzzleConfig.sudoku.image}
+            close={closeSudoku}
+          />
+        ) : (
+          <Sudoku
+            initialGrid={initialGrid}
+            solutionGrid={solutionGrid}
+            close={closeSudoku}
+          />
+        )}
+      </PuzzleModal>
     </div>
   );
 };
