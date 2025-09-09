@@ -1,9 +1,12 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Castellar-Regular";
+  src: url("/fonts/castellar-regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 html {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Castellar-Regular", sans-serif;
 }
