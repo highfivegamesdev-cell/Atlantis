@@ -7,7 +7,7 @@ type Props = {
   send: (event: GameEvent) => void;
 };
 
-export const Scene2 = ({ puzzles, solvedPuzzles, send }: Props) => {
+export const Scene2 = ({ send }: Props) => {
   // const allPuzzlesSolved = puzzles.every((p) => solvedPuzzles[p.id]);
   const allPuzzlesSolved = true;
 
