@@ -12,6 +12,7 @@ import { Puzzles } from "@/scenes/config/scenesConfig";
 import { puzzleConfig } from "@/scenes/scene1/config";
 import { PuzzleModal } from "@/components/display/Modal/PuzzleModal";
 import { PuzzleTrigger } from "@/components/action/Button/PuzzleTrigger";
+import { Maze } from "@/scenes/scene1/puzzles/maze/Maze";
 
 type Props = {
   puzzles: Puzzle[];
@@ -23,6 +24,11 @@ export const Scene1 = ({ puzzles }: Props) => {
     isModalOpen: isSudokuOpen,
     openModal: openSudoku,
     closeModal: closeSudoku,
+  } = useModal();
+  const {
+    isModalOpen: isMazeOpen,
+    openModal: openMaze,
+    closeModal: closeMaze,
   } = useModal();
 
   const { solvedPuzzles } = state.context;
@@ -44,6 +50,14 @@ export const Scene1 = ({ puzzles }: Props) => {
         action={openSudoku}
       />
 
+      <PuzzleTrigger
+        image={puzzleConfig.maze.thumbnail}
+        alt="Open Maze"
+        positionTop="35%"
+        positionRight="45%"
+        action={openMaze}
+      />
+
       <PuzzleModal isPuzzleOpen={isSudokuOpen} closePuzzle={closeSudoku}>
         {solvedPuzzles[Puzzles.sudoku.name] ? (
           <PuzzleCompleted
@@ -57,6 +71,18 @@ export const Scene1 = ({ puzzles }: Props) => {
             solutionGrid={solutionGrid}
             close={closeSudoku}
           />
+        )}
+      </PuzzleModal>
+
+      <PuzzleModal isPuzzleOpen={isMazeOpen} closePuzzle={closeMaze}>
+        {solvedPuzzles[Puzzles.maze.name] ? (
+          <PuzzleCompleted
+            text={puzzleConfig.maze.summary}
+            image={puzzleConfig.maze.image}
+            close={closeMaze}
+          />
+        ) : (
+          <Maze close={closeMaze} />
         )}
       </PuzzleModal>
     </div>
