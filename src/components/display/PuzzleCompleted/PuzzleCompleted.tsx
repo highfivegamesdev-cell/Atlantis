@@ -16,8 +16,12 @@ export const PuzzleCompleted = ({ text, image, close }: Props) => {
         ×
       </button>
 
-      <div className="flex flex-col items-center gap-2">
-        <img className="text-center" src={image} alt="Puzzle Completed" />
+      <div className="flex flex-col items-center gap-6">
+        <img
+          className="text-center w-[400px]"
+          src={image}
+          alt="Puzzle Completed"
+        />
         <p className="font-bold">{text}</p>
         <button
           className="bg-blue-700 text-white font-bold px-4 py-2 mt-2 rounded hover:bg-blue-800 transition hover:cursor-pointer"
