@@ -14,7 +14,7 @@ export const PuzzleTrigger = ({
   action,
 }: Props) => {
   const baseClass =
-    "absolute w-[10%] h-auto hover:cursor-pointer border border-transparent hover:border-teal-200 duration-300 hover:shadow-[0_0_20px_rgba(20,184,166,0.8)] transition";
+    "absolute lg:w-[10%] 2xl:w-[6%] h-auto hover:cursor-pointer border border-transparent hover:border-teal-200 duration-300 hover:shadow-[0_0_20px_rgba(20,184,166,0.8)] transition";
 
   return (
     <button

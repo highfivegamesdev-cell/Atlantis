@@ -62,10 +62,24 @@ export const Maze = ({ close }: Props) => {
       >
         ×
       </button>
-      <div className="w-full h-full flex items-center pl-4">
-        <div ref={containerRef} />
+      <div className="flex p-4 gap-4">
+        <div className="w-full h-full flex items-center">
+          <div ref={containerRef} />
+        </div>
+        <div className="flex flex-col align-center w-full mt-10 p-2 gap-8">
+          <button
+            className="bg-white font-bold text-red-500 hover:text-red-800 px-4 py-2 rounded hover:cursor-pointer"
+            onClick={handleReset}
+          >
+            Reset
+          </button>
+
+          <p className="bg-white opacity-65 font-bold p-2 rounded">
+            Navigate the maze to find the hidden icon. Use the arrow keys to
+            move your character. Reach the icon to complete the puzzle!
+          </p>
+        </div>
       </div>
-      <button onClick={handleReset}>Reset</button>
     </PuzzleWrapper>
   );
 };

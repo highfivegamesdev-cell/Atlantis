@@ -45,16 +45,16 @@ export const Scene1 = ({ puzzles }: Props) => {
       <PuzzleTrigger
         image={puzzleConfig.sudoku.thumbnail}
         alt="Open Sudoku"
-        positionTop="62%"
-        positionRight="10%"
+        positionTop="65%"
+        positionRight="20%"
         action={openSudoku}
       />
 
       <PuzzleTrigger
         image={puzzleConfig.maze.thumbnail}
         alt="Open Maze"
-        positionTop="35%"
-        positionRight="45%"
+        positionTop="65%"
+        positionRight="80%"
         action={openMaze}
       />
 
