@@ -9,8 +9,8 @@ type Props = {
   close: () => void;
 };
 
-const correctAnswer1 = ["the wind", "wind"];
-const correctAnswer2 = ["the pearl", "pearl"];
+const correctAnswer1 = ["the wind", "wind"];
+const correctAnswer2 = ["the pearl", "pearl"];
 
 export const Riddle = ({ close }: Props) => {
   const [riddle1Answer, setRiddle1Answer] = useState("");
@@ -34,11 +34,11 @@ export const Riddle = ({ close }: Props) => {
   }, [riddle1Answer, riddle2Answer]);
 
   const handleRiddle1Change = (event: ChangeEvent<HTMLInputElement>) => {
-    setRiddle1Answer(event.target.value.toLowerCase().trim());
+    setRiddle1Answer(event.target.value.toLowerCase());
   };
 
   const handleRiddle2Change = (event: ChangeEvent<HTMLInputElement>) => {
-    setRiddle2Answer(event.target.value.toLowerCase().trim());
+    setRiddle2Answer(event.target.value.toLowerCase());
   };
 
   return (
@@ -51,9 +51,9 @@ export const Riddle = ({ close }: Props) => {
       </button>
 
       <form className="w-full h-full">
-        <div className="flex items-center justify-center h-full gap-10 p-4 pb-0">
-          <div className="mt-8 max-w-[250px] p-4 bg-transparent rounded">
-            <p>
+        <div className="flex items-center justify-center h-full gap-2 xl:gap-10 p-4 pb-0">
+          <div className="mt-8 max-w-[200px] lg:max-w-[250px] p-1 xl:p-4 bg-transparent rounded">
+            <p className="text-sm lg:text-base font-bold">
               I have no arms or legs, but I push and caress all. I cannot be
               held, yet I carry ships far. From Boreas to Zephyrus I wander
               free. What am I?
@@ -65,6 +65,7 @@ export const Riddle = ({ close }: Props) => {
               </div>
             ) : (
               <input
+                name="riddle1"
                 type="text"
                 className="mt-4 p-2 border border-gray-300 bg-white rounded w-full"
                 placeholder="Your answer"
@@ -73,8 +74,8 @@ export const Riddle = ({ close }: Props) => {
             )}
           </div>
 
-          <div className="mt-8 max-w-[250px] p-4 bg-transparent rounded">
-            <p>
+          <div className="mt-8 max-w-[200px] lg:max-w-[250px] p-1 xl:p-4 bg-transparent rounded">
+            <p className="text-sm lg:text-base font-bold">
               I grow without a garden, yet I live in the sea. I am hard yet
               precious, smooth but not frail. Found in a shell, I am prized for
               my sight. What am I?
@@ -85,6 +86,7 @@ export const Riddle = ({ close }: Props) => {
               </div>
             ) : (
               <input
+                name="riddle2"
                 type="text"
                 className="mt-4 p-2 border border-gray-300 bg-white rounded w-full"
                 placeholder="Your answer"
