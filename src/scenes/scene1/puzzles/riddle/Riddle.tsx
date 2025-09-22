@@ -34,11 +34,11 @@ export const Riddle = ({ close }: Props) => {
   }, [riddle1Answer, riddle2Answer]);
 
   const handleRiddle1Change = (event: ChangeEvent<HTMLInputElement>) => {
-    setRiddle1Answer(event.target.value.toLowerCase());
+    setRiddle1Answer(event.target.value.toLowerCase().trim());
   };
 
   const handleRiddle2Change = (event: ChangeEvent<HTMLInputElement>) => {
-    setRiddle2Answer(event.target.value.toLowerCase());
+    setRiddle2Answer(event.target.value.toLowerCase().trim());
   };
 
   return (
