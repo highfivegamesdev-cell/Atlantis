@@ -3,12 +3,12 @@ import { mulberry32 } from "@/lib/numbers/randomNumberGenerator";
 export const generateMaze = (
   width: number,
   height: number,
-  seed = 1234
+  seed = 1234,
 ): number[][] => {
   const rand = mulberry32(seed);
 
   const maze: number[][] = Array.from({ length: height }, () =>
-    Array.from({ length: width }, () => 1)
+    Array.from({ length: width }, () => 1),
   );
 
   function carve(x: number, y: number) {

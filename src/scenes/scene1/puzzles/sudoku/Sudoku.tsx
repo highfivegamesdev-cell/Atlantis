@@ -22,13 +22,15 @@ export const Sudoku = ({ initialGrid, solutionGrid, close }: Props) => {
   const { send } = useGame();
 
   const [userGrid, setUserGrid] = useState(
-    initialGrid.map((row) => row.slice())
+    initialGrid.map((row) => row.slice()),
   );
   const [errorCells, setErrorCells] = useState<ErrorCell[]>([]);
 
   useEffect(() => {
     const isSolved = userGrid.every((row, rowIndex) =>
-      row.every((value, colIndex) => value === solutionGrid[rowIndex][colIndex])
+      row.every(
+        (value, colIndex) => value === solutionGrid[rowIndex][colIndex],
+      ),
     );
 
     if (isSolved) {
@@ -43,7 +45,7 @@ export const Sudoku = ({ initialGrid, solutionGrid, close }: Props) => {
   const handleChange = (
     row: number,
     col: number,
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const inputValue = event.target.value.trim();
     if (inputValue === "") return;
@@ -65,7 +67,7 @@ export const Sudoku = ({ initialGrid, solutionGrid, close }: Props) => {
 
       setTimeout(() => {
         setErrorCells((prev) =>
-          prev.filter((cell) => !(cell.row === row && cell.col === col))
+          prev.filter((cell) => !(cell.row === row && cell.col === col)),
         );
       }, 3000);
     }
@@ -73,7 +75,7 @@ export const Sudoku = ({ initialGrid, solutionGrid, close }: Props) => {
 
   const getDisplayValue = (row: number, col: number) => {
     const error = errorCells.find(
-      (cell) => cell.row === row && cell.col === col
+      (cell) => cell.row === row && cell.col === col,
     );
     if (error) return error.value;
 
@@ -82,7 +84,7 @@ export const Sudoku = ({ initialGrid, solutionGrid, close }: Props) => {
 
   const getCellClass = (row: number, col: number) => {
     const isError = errorCells.some(
-      (cell) => cell.row === row && cell.col === col
+      (cell) => cell.row === row && cell.col === col,
     );
     const baseClass =
       "w-[20px] h-[20px] md:w-[35px] md:h-[35px] lg:w-[50px] 3xl:w-[80px] lg:h-[50px] 3xl:h-[80px] outline-none text-center text-xl font-bold text-white [text-shadow:0_0_10px_#99ffff]";
@@ -120,7 +122,7 @@ export const Sudoku = ({ initialGrid, solutionGrid, close }: Props) => {
               disabled={isCellDisabled(row, col)}
               className={getCellClass(row, col)}
             />
-          ))
+          )),
         )}
       </div>
     </PuzzleWrapper>

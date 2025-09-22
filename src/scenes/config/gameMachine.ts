@@ -31,7 +31,7 @@ const buildScenesStates = (room: SceneConfig) => {
             if (event.type !== GameEventTypes.solvePuzzle) return context;
 
             const puzzle = room.puzzles.find(
-              (puzzle) => puzzle.id === event.puzzleId
+              (puzzle) => puzzle.id === event.puzzleId,
             );
             if (!puzzle) return context;
 
@@ -61,7 +61,7 @@ const buildScenesStates = (room: SceneConfig) => {
 export const createGameMachine = () => {
   const states: Record<string, any> = {};
   scenesConfig.forEach((scene) =>
-    Object.assign(states, buildScenesStates(scene))
+    Object.assign(states, buildScenesStates(scene)),
   );
 
   states["exit"] = { type: "final" };

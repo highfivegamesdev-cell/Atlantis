@@ -31,7 +31,7 @@ export class MazeGame extends Phaser.Scene {
       MAZE_GOAL.x * MAZE_TILE_SIZE + MAZE_TILE_SIZE / 2,
       MAZE_GOAL.y * MAZE_TILE_SIZE + MAZE_TILE_SIZE / 2,
       MAZE_TILE_SIZE / 2,
-      0xff0000
+      0xff0000,
     );
 
     this.player = this.add.rectangle(
@@ -39,7 +39,7 @@ export class MazeGame extends Phaser.Scene {
       MAZE_START.y * MAZE_TILE_SIZE + MAZE_TILE_SIZE / 2,
       MAZE_TILE_SIZE * 0.8,
       MAZE_TILE_SIZE * 0.8,
-      0x0000ff
+      0x0000ff,
     );
 
     this.pathGraphics = this.add.graphics().setDepth(-1);
@@ -49,7 +49,7 @@ export class MazeGame extends Phaser.Scene {
       MAZE_START.x * MAZE_TILE_SIZE,
       MAZE_START.y * MAZE_TILE_SIZE,
       MAZE_TILE_SIZE,
-      MAZE_TILE_SIZE
+      MAZE_TILE_SIZE,
     );
   }
 
@@ -75,7 +75,7 @@ export class MazeGame extends Phaser.Scene {
           tileX * MAZE_TILE_SIZE,
           tileY * MAZE_TILE_SIZE,
           MAZE_TILE_SIZE,
-          MAZE_TILE_SIZE
+          MAZE_TILE_SIZE,
         );
 
         this.player.x = newX;
@@ -99,7 +99,7 @@ export class MazeGame extends Phaser.Scene {
             x * MAZE_TILE_SIZE,
             y * MAZE_TILE_SIZE,
             MAZE_TILE_SIZE,
-            MAZE_TILE_SIZE
+            MAZE_TILE_SIZE,
           );
         }
       }
