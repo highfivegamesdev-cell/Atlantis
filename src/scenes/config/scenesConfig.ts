@@ -19,6 +19,10 @@ export const Puzzles = {
     name: "maze",
     answer: "MAZE_SOLVED",
   },
+  riddle: {
+    name: "riddle",
+    answer: "RIDDLE_SOLVED",
+  },
 } as const;
 
 export const scenesConfig: SceneConfig[] = [
@@ -27,7 +31,7 @@ export const scenesConfig: SceneConfig[] = [
     puzzles: [
       { id: Puzzles.sudoku.name, answer: Puzzles.sudoku.answer },
       { id: Puzzles.maze.name, answer: Puzzles.maze.answer },
-      { id: "puzzle3", answer: "CODE" },
+      { id: Puzzles.riddle.name, answer: Puzzles.riddle.answer },
     ],
     next: "scene2",
   },

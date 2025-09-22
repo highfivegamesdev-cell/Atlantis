@@ -2,7 +2,9 @@ import { generateMaze } from "@/scenes/scene1/puzzles/maze/lib/generateMaze";
 
 const MAZE_WIDTH = 61;
 const MAZE_HEIGHT = 51;
-export const MAZE_TILE_SIZE = window.matchMedia("(min-width: 1024px)").matches ? 10 : 6;
+export const MAZE_TILE_SIZE = window.matchMedia("(min-width: 1024px)").matches
+  ? 10
+  : 6;
 export const MAZE_START = { x: Math.floor(MAZE_WIDTH / 2), y: 1 };
 export const MAZE_GOAL = {
   x: Math.floor(MAZE_WIDTH / 2),

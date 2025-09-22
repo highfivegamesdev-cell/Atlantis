@@ -13,6 +13,7 @@ import { puzzleConfig } from "@/scenes/scene1/config";
 import { PuzzleModal } from "@/components/display/Modal/PuzzleModal";
 import { PuzzleTrigger } from "@/components/action/Button/PuzzleTrigger";
 import { Maze } from "@/scenes/scene1/puzzles/maze/Maze";
+import { Riddle } from "@/scenes/scene1/puzzles/riddle/Riddle";
 
 type Props = {
   puzzles: Puzzle[];
@@ -29,6 +30,11 @@ export const Scene1 = ({ puzzles }: Props) => {
     isModalOpen: isMazeOpen,
     openModal: openMaze,
     closeModal: closeMaze,
+  } = useModal();
+  const {
+    isModalOpen: isRiddleOpen,
+    openModal: openRiddle,
+    closeModal: closeRiddle,
   } = useModal();
 
   const { solvedPuzzles } = state.context;
@@ -56,6 +62,13 @@ export const Scene1 = ({ puzzles }: Props) => {
         action={openMaze}
       />
 
+      <PuzzleTrigger
+        image={puzzleConfig.riddle.thumbnail}
+        alt="Open Riddle"
+        className="w-[50px] lg:w-[65px] xl:w-[80px] 2xl:w-[95px] top-[77%] right-[66%]"
+        action={openRiddle}
+      />
+
       <PuzzleModal isPuzzleOpen={isSudokuOpen} closePuzzle={closeSudoku}>
         {solvedPuzzles[Puzzles.sudoku.name] ? (
           <PuzzleCompleted
@@ -81,6 +94,18 @@ export const Scene1 = ({ puzzles }: Props) => {
           />
         ) : (
           <Maze close={closeMaze} />
+        )}
+      </PuzzleModal>
+
+      <PuzzleModal isPuzzleOpen={isRiddleOpen} closePuzzle={closeRiddle}>
+        {solvedPuzzles[Puzzles.riddle.name] ? (
+          <PuzzleCompleted
+            text={puzzleConfig.riddle.summary}
+            image={puzzleConfig.riddle.image}
+            close={closeRiddle}
+          />
+        ) : (
+          <Riddle close={closeRiddle} />
         )}
       </PuzzleModal>
     </div>
