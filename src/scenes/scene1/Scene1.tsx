@@ -1,5 +1,4 @@
 import type { Puzzle } from "@/scenes/config/scenesConfig";
-import { GameEventTypes } from "@/scenes/config/gameMachine";
 import { useModal } from "@/lib/hooks/useModal";
 import { Sudoku } from "@/scenes/scene1/puzzles/sudoku/Sudoku";
 import {
@@ -15,7 +14,6 @@ import { PuzzleTrigger } from "@/components/action/Button/PuzzleTrigger";
 import { Maze } from "@/scenes/scene1/puzzles/maze/Maze";
 import { Riddle } from "@/scenes/scene1/puzzles/riddle/Riddle";
 import { ShapeMatcher } from "@/scenes/scene1/puzzles/shapeMatcher/ShapeMatcher";
-import { useEffect } from "react";
 import { SceneWrapper } from "@/components/layout/SceneWrapper";
 
 type Props = {
@@ -47,26 +45,6 @@ export const Scene1 = ({ puzzles }: Props) => {
 
   const { solvedPuzzles } = state.context;
   const allPuzzlesSolved = puzzles.every((p) => solvedPuzzles[p.id]);
-
-  useEffect(() => {
-    send({
-      type: GameEventTypes.solvePuzzle,
-      puzzleId: Puzzles.maze.name,
-      answer: Puzzles.maze.answer,
-    });
-
-    send({
-      type: GameEventTypes.solvePuzzle,
-      puzzleId: Puzzles.sudoku.name,
-      answer: Puzzles.sudoku.answer,
-    });
-
-    send({
-      type: GameEventTypes.solvePuzzle,
-      puzzleId: Puzzles.riddle.name,
-      answer: Puzzles.riddle.answer,
-    });
-  }, []);
 
   const background = allPuzzlesSolved
     ? "/images/scenes/scene1/scene1-completed.png"
