@@ -5,6 +5,7 @@ import { mazeBaseConfig } from "@/scenes/scene1/puzzles/maze/MazeGame";
 import { useGame } from "@/scenes/config/useGame";
 import { Puzzles } from "@/scenes/config/scenesConfig";
 import { GameEventTypes } from "@/scenes/config/gameMachine";
+import { puzzleConfig } from "@/scenes/scene1/config";
 
 type Props = {
   close: () => void;
@@ -55,7 +56,7 @@ export const Maze = ({ close }: Props) => {
   };
 
   return (
-    <PuzzleWrapper backgroundUrl="/images/scenes/scene1/puzzles/maze-background.png">
+    <PuzzleWrapper backgroundUrl={puzzleConfig.maze.background}>
       <button
         onClick={close}
         className="absolute top-[1%] right-[3%] text-white hover:text-black text-4xl font-bold hover:cursor-pointer"
