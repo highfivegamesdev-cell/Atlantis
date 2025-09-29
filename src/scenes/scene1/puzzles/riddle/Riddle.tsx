@@ -4,6 +4,7 @@ import { ThumbsUp } from "lucide-react";
 import { useGame } from "@/scenes/config/useGame";
 import { Puzzles } from "@/scenes/config/scenesConfig";
 import { GameEventTypes } from "@/scenes/config/gameMachine";
+import { puzzleConfig } from "@/scenes/scene1/config";
 
 type Props = {
   close: () => void;
@@ -42,7 +43,7 @@ export const Riddle = ({ close }: Props) => {
   };
 
   return (
-    <PuzzleWrapper backgroundUrl="/images/scenes/scene1/puzzles/riddle-background.png">
+    <PuzzleWrapper backgroundUrl={puzzleConfig.riddle.background}>
       <button
         onClick={close}
         className="absolute top-[1%] right-[3%] text-white hover:text-black text-4xl font-bold hover:cursor-pointer"

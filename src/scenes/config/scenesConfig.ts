@@ -23,6 +23,10 @@ export const Puzzles = {
     name: "riddle",
     answer: "RIDDLE_SOLVED",
   },
+  shapeMatcher: {
+    name: "shapeMatcher",
+    answer: "SHAPE_MATCHER_SOLVED",
+  },
 } as const;
 
 export const scenesConfig: SceneConfig[] = [
@@ -32,6 +36,7 @@ export const scenesConfig: SceneConfig[] = [
       { id: Puzzles.sudoku.name, answer: Puzzles.sudoku.answer },
       { id: Puzzles.maze.name, answer: Puzzles.maze.answer },
       { id: Puzzles.riddle.name, answer: Puzzles.riddle.answer },
+      { id: Puzzles.shapeMatcher.name, answer: Puzzles.shapeMatcher.answer },
     ],
     next: "scene2",
   },

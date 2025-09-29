@@ -5,6 +5,7 @@ import type { SudokuGrid } from "@/scenes/scene1/puzzles/sudoku/config";
 import { Puzzles } from "@/scenes/config/scenesConfig";
 import { GameEventTypes } from "@/scenes/config/gameMachine";
 import { useGame } from "@/scenes/config/useGame";
+import { puzzleConfig } from "@/scenes/scene1/config";
 
 type Props = {
   initialGrid: SudokuGrid;
@@ -102,7 +103,7 @@ export const Sudoku = ({ initialGrid, solutionGrid, close }: Props) => {
   };
 
   return (
-    <PuzzleWrapper backgroundUrl="/images/scenes/scene1/puzzles/sudoku-background.png">
+    <PuzzleWrapper backgroundUrl={puzzleConfig.sudoku.background}>
       <button
         onClick={close}
         className="absolute top-[1%] right-[3%] text-white hover:text-black text-4xl font-bold hover:cursor-pointer"

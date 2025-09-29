@@ -18,11 +18,7 @@ function App() {
 
   switch (currentScene.id) {
     case "scene1":
-      return (
-        <SceneWrapper backgroundUrl="/images/scenes/scene1/scene1-background.png">
-          <Scene1 puzzles={currentScene.puzzles} />
-        </SceneWrapper>
-      );
+      return <Scene1 puzzles={currentScene.puzzles} />;
     case "scene2":
       return (
         <SceneWrapper backgroundUrl="/images/scenes/scene1/scene1-background.png">
