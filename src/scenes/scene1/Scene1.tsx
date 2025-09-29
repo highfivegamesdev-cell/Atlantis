@@ -21,7 +21,7 @@ type Props = {
 };
 
 export const Scene1 = ({ puzzles }: Props) => {
-  const { state, send } = useGame();
+  const { state } = useGame();
   const {
     isModalOpen: isSudokuOpen,
     openModal: openSudoku,
