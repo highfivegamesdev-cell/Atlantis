@@ -27,6 +27,10 @@ export const Puzzles = {
     name: "shapeMatcher",
     answer: "SHAPE_MATCHER_SOLVED",
   },
+  jigsaw: {
+    name: "jigsaw",
+    answer: "JIGSAW_SOLVED",
+  },
 } as const;
 
 export const scenesConfig: SceneConfig[] = [
@@ -42,7 +46,7 @@ export const scenesConfig: SceneConfig[] = [
   },
   {
     id: "scene2",
-    puzzles: [{ id: "puzzle4", answer: "SECRET", item: "Mapa 🗺️" }],
+    puzzles: [{ id: Puzzles.jigsaw.name, answer: Puzzles.jigsaw.answer }],
     next: "scene3",
   },
   {

@@ -15,13 +15,15 @@ import { Maze } from "@/scenes/scene1/puzzles/maze/Maze";
 import { Riddle } from "@/scenes/scene1/puzzles/riddle/Riddle";
 import { ShapeMatcher } from "@/scenes/scene1/puzzles/shapeMatcher/ShapeMatcher";
 import { SceneWrapper } from "@/components/layout/SceneWrapper";
+import { useEffect } from "react";
+import {GameEventTypes} from "@/scenes/config/gameMachine";
 
 type Props = {
   puzzles: Puzzle[];
 };
 
 export const Scene1 = ({ puzzles }: Props) => {
-  const { state } = useGame();
+  const { state, send } = useGame();
   const {
     isModalOpen: isSudokuOpen,
     openModal: openSudoku,
@@ -49,11 +51,41 @@ export const Scene1 = ({ puzzles }: Props) => {
   const background = allPuzzlesSolved
     ? "/images/scenes/scene1/scene1-completed.png"
     : "/images/scenes/scene1/scene1-background.png";
-  // return (
-  //           <button onClick={() => send({ type: GameEventTypes.next })}>
-  //     Next scene
-  //   </button>
-  // )
+
+// Temporary auto-solve for testing
+
+    useEffect(() => {
+              send({
+          type: GameEventTypes.solvePuzzle,
+          puzzleId: Puzzles.riddle.name,
+          answer: Puzzles.riddle.answer,
+        });
+                send({
+          type: GameEventTypes.solvePuzzle,
+          puzzleId: Puzzles.maze.name,
+          answer: Puzzles.maze.answer,
+        });
+                send({
+          type: GameEventTypes.solvePuzzle,
+          puzzleId: Puzzles.shapeMatcher.name,
+          answer: Puzzles.shapeMatcher.answer,
+        });
+                send({
+          type: GameEventTypes.solvePuzzle,
+          puzzleId: Puzzles.sudoku.name,
+          answer: Puzzles.sudoku.answer,
+        });
+    }, []);
+
+  useEffect(() => {
+    if (allPuzzlesSolved) {
+      const timer = setTimeout(() => {
+        send({ type: "NEXT" });
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [allPuzzlesSolved, send]);
 
   return (
     <SceneWrapper backgroundUrl={background}>

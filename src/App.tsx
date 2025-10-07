@@ -15,19 +15,15 @@ function App() {
 
   const currentScene = scenesConfig.find((scene) => state.matches(scene.id));
   if (!currentScene) return <h2>Game over</h2>;
-
+console.log(currentScene, state)
   switch (currentScene.id) {
     case "scene1":
       return <Scene1 puzzles={currentScene.puzzles} />;
     case "scene2":
       return (
-        <SceneWrapper backgroundUrl="/images/scenes/scene1/scene1-background.png">
           <Scene2
             puzzles={currentScene.puzzles}
-            send={send}
-            solvedPuzzles={solvedPuzzles}
           />
-        </SceneWrapper>
       );
     case "scene3":
       return (
