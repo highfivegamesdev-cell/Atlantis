@@ -14,7 +14,7 @@ type Props = {
 };
 
 export const Scene2 = ({ puzzles }: Props) => {
-  const { state, send } = useGame();
+  const { state } = useGame();
   const {
     isModalOpen: isJigsawOpen,
     openModal: openJigsaw,
@@ -22,7 +22,8 @@ export const Scene2 = ({ puzzles }: Props) => {
   } = useModal();
 
   const { solvedPuzzles } = state.context;
-  const allPuzzlesSolved = puzzles.every((p) => solvedPuzzles[p.id]);
+  // const allPuzzlesSolved = puzzles.every((p) => solvedPuzzles[p.id]);
+  console.log(puzzles);
 
   const background = "/images/scenes/scene2/scene2-background.jpg";
 
