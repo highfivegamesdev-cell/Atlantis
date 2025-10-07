@@ -53,9 +53,9 @@ const buildScenesStates = (room: SceneConfig) => {
           guard: ({ context }: { context: GameContext }) =>
             room.puzzles.every((puzzle) => context.solvedPuzzles[puzzle.id]),
           actions: assign(({ context }) => ({
-    ...context,
-    currentScene: room.next ?? 'exit',
-  })),
+            ...context,
+            currentScene: room.next ?? "exit",
+          })),
         },
       },
     },

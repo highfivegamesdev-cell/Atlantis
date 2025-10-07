@@ -20,11 +20,7 @@ function App() {
     case "scene1":
       return <Scene1 puzzles={currentScene.puzzles} />;
     case "scene2":
-      return (
-          <Scene2
-            puzzles={currentScene.puzzles}
-          />
-      );
+      return <Scene2 puzzles={currentScene.puzzles} />;
     case "scene3":
       return (
         <SceneWrapper backgroundUrl="/images/scenes/scene1/scene1-background.png">

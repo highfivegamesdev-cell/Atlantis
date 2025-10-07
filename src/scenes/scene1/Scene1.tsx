@@ -16,7 +16,7 @@ import { Riddle } from "@/scenes/scene1/puzzles/riddle/Riddle";
 import { ShapeMatcher } from "@/scenes/scene1/puzzles/shapeMatcher/ShapeMatcher";
 import { SceneWrapper } from "@/components/layout/SceneWrapper";
 import { useEffect } from "react";
-import {GameEventTypes} from "@/scenes/config/gameMachine";
+import { GameEventTypes } from "@/scenes/config/gameMachine";
 
 type Props = {
   puzzles: Puzzle[];
@@ -52,30 +52,28 @@ export const Scene1 = ({ puzzles }: Props) => {
     ? "/images/scenes/scene1/scene1-completed.png"
     : "/images/scenes/scene1/scene1-background.png";
 
-// Temporary auto-solve for testing
-
-    useEffect(() => {
-              send({
-          type: GameEventTypes.solvePuzzle,
-          puzzleId: Puzzles.riddle.name,
-          answer: Puzzles.riddle.answer,
-        });
-                send({
-          type: GameEventTypes.solvePuzzle,
-          puzzleId: Puzzles.maze.name,
-          answer: Puzzles.maze.answer,
-        });
-                send({
-          type: GameEventTypes.solvePuzzle,
-          puzzleId: Puzzles.shapeMatcher.name,
-          answer: Puzzles.shapeMatcher.answer,
-        });
-                send({
-          type: GameEventTypes.solvePuzzle,
-          puzzleId: Puzzles.sudoku.name,
-          answer: Puzzles.sudoku.answer,
-        });
-    }, []);
+  const solveAllPuzzles = () => {
+    send({
+      type: GameEventTypes.solvePuzzle,
+      puzzleId: Puzzles.riddle.name,
+      answer: Puzzles.riddle.answer,
+    });
+    send({
+      type: GameEventTypes.solvePuzzle,
+      puzzleId: Puzzles.maze.name,
+      answer: Puzzles.maze.answer,
+    });
+    send({
+      type: GameEventTypes.solvePuzzle,
+      puzzleId: Puzzles.shapeMatcher.name,
+      answer: Puzzles.shapeMatcher.answer,
+    });
+    send({
+      type: GameEventTypes.solvePuzzle,
+      puzzleId: Puzzles.sudoku.name,
+      answer: Puzzles.sudoku.answer,
+    });
+  };
 
   useEffect(() => {
     if (allPuzzlesSolved) {
@@ -90,6 +88,13 @@ export const Scene1 = ({ puzzles }: Props) => {
   return (
     <SceneWrapper backgroundUrl={background}>
       <div className="w-full h-full relative">
+        <button
+          onClick={solveAllPuzzles}
+          className="p-6 absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-white hover:text-black text-4xl font-bold hover:cursor-pointer"
+        >
+          Go to Scene 2
+        </button>
+
         <PuzzleTrigger
           image={puzzleConfig.sudoku.thumbnail}
           alt="Open Sudoku"

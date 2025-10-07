@@ -6,7 +6,7 @@ import { Puzzles } from "@/scenes/config/scenesConfig";
 import { puzzleConfig } from "@/scenes/scene2/config";
 import { PuzzleModal } from "@/components/display/Modal/PuzzleModal";
 import { PuzzleTrigger } from "@/components/action/Button/PuzzleTrigger";
-import {Jigsaw} from "@/scenes/scene2/puzzles/jigsaw/Jigsaw";
+import { Jigsaw } from "@/scenes/scene2/puzzles/jigsaw/Jigsaw";
 import { SceneWrapper } from "@/components/layout/SceneWrapper";
 
 type Props = {
@@ -24,7 +24,7 @@ export const Scene2 = ({ puzzles }: Props) => {
   const { solvedPuzzles } = state.context;
   const allPuzzlesSolved = puzzles.every((p) => solvedPuzzles[p.id]);
 
-      const background = "/images/scenes/scene2/scene2-background.jpg";
+  const background = "/images/scenes/scene2/scene2-background.jpg";
 
   return (
     <SceneWrapper backgroundUrl={background}>
@@ -36,10 +36,7 @@ export const Scene2 = ({ puzzles }: Props) => {
           action={openJigsaw}
         />
 
-        <PuzzleModal
-          isPuzzleOpen={isJigsawOpen}
-          closePuzzle={closeJigsaw}
-        >
+        <PuzzleModal isPuzzleOpen={isJigsawOpen} closePuzzle={closeJigsaw}>
           {solvedPuzzles[Puzzles.jigsaw.name] ? (
             <PuzzleCompleted
               text={puzzleConfig.jigsaw.summary}

@@ -1,1 +1,1 @@
-declare module 'headbreaker';
+declare module "headbreaker";
