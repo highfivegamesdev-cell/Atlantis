@@ -15,7 +15,7 @@ function App() {
 
   const currentScene = scenesConfig.find((scene) => state.matches(scene.id));
   if (!currentScene) return <h2>Game over</h2>;
-console.log(currentScene, state)
+
   switch (currentScene.id) {
     case "scene1":
       return <Scene1 puzzles={currentScene.puzzles} />;
