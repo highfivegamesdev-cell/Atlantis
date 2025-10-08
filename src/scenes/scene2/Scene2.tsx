@@ -41,7 +41,6 @@ export const Scene2 = ({ puzzles }: Props) => {
           {solvedPuzzles[Puzzles.jigsaw.name] ? (
             <PuzzleCompleted
               text={puzzleConfig.jigsaw.summary}
-              image={puzzleConfig.jigsaw.image}
               close={closeJigsaw}
             />
           ) : (

@@ -11,7 +11,7 @@ export const Jigsaw = ({ close }: Props) => {
     <PuzzleWrapper backgroundUrl={puzzleConfig.jigsaw.background}>
       <button
         onClick={close}
-        className="absolute top-[1%] right-[3%] text-white hover:text-black text-4xl font-bold hover:cursor-pointer"
+        className="absolute top-[1%] right-[3%] text-white hover:text-black text-4xl font-bold hover:cursor-pointer z-10"
       >
         ×
       </button>
