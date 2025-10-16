@@ -8,6 +8,7 @@ import { PuzzleModal } from "@/components/display/Modal/PuzzleModal";
 import { PuzzleTrigger } from "@/components/action/Button/PuzzleTrigger";
 import { Jigsaw } from "@/scenes/scene2/puzzles/jigsaw/Jigsaw";
 import { SceneWrapper } from "@/components/layout/SceneWrapper";
+import { Riddle } from "@/scenes/scene2/puzzles/riddle/Riddle";
 
 type Props = {
   puzzles: Puzzle[];
@@ -19,6 +20,11 @@ export const Scene2 = ({ puzzles }: Props) => {
     isModalOpen: isJigsawOpen,
     openModal: openJigsaw,
     closeModal: closeJigsaw,
+  } = useModal();
+  const {
+    isModalOpen: isRiddleOpen,
+    openModal: openRiddle,
+    closeModal: closeRiddle,
   } = useModal();
 
   const { solvedPuzzles } = state.context;
@@ -37,6 +43,13 @@ export const Scene2 = ({ puzzles }: Props) => {
           action={openJigsaw}
         />
 
+        <PuzzleTrigger
+          image={puzzleConfig.riddle.thumbnail}
+          alt="Open Riddle"
+          className="w-[50px] lg:w-[65px] xl:w-[80px] 2xl:w-[95px] top-[60%] right-[20%]"
+          action={openRiddle}
+        />
+
         <PuzzleModal isPuzzleOpen={isJigsawOpen} closePuzzle={closeJigsaw}>
           {solvedPuzzles[Puzzles.jigsaw.name] ? (
             <PuzzleCompleted
@@ -45,6 +58,18 @@ export const Scene2 = ({ puzzles }: Props) => {
             />
           ) : (
             <Jigsaw close={closeJigsaw} />
+          )}
+        </PuzzleModal>
+
+        <PuzzleModal isPuzzleOpen={isRiddleOpen} closePuzzle={closeRiddle}>
+          {solvedPuzzles[Puzzles.riddleStage2.name] ? (
+            <PuzzleCompleted
+              text={puzzleConfig.riddle.summary}
+              image={puzzleConfig.riddle.image}
+              close={closeRiddle}
+            />
+          ) : (
+            <Riddle close={closeRiddle} />
           )}
         </PuzzleModal>
       </div>

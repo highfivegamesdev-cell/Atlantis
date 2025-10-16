@@ -31,6 +31,10 @@ export const Puzzles = {
     name: "jigsaw",
     answer: "JIGSAW_SOLVED",
   },
+  riddleStage2: {
+    name: "riddleStage2",
+    answer: "RIDDLE_STAGE_2_SOLVED",
+  },
 } as const;
 
 export const scenesConfig: SceneConfig[] = [
@@ -46,7 +50,10 @@ export const scenesConfig: SceneConfig[] = [
   },
   {
     id: "scene2",
-    puzzles: [{ id: Puzzles.jigsaw.name, answer: Puzzles.jigsaw.answer }],
+    puzzles: [
+      { id: Puzzles.jigsaw.name, answer: Puzzles.jigsaw.answer },
+      { id: Puzzles.riddleStage2.name, answer: Puzzles.riddleStage2.answer },
+    ],
     next: "scene3",
   },
   {
