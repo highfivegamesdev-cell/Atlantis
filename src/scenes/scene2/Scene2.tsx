@@ -9,13 +9,14 @@ import { PuzzleTrigger } from "@/components/action/Button/PuzzleTrigger";
 import { Jigsaw } from "@/scenes/scene2/puzzles/jigsaw/Jigsaw";
 import { SceneWrapper } from "@/components/layout/SceneWrapper";
 import { Riddle } from "@/scenes/scene2/puzzles/riddle/Riddle";
+import { useEffect } from "react";
 
 type Props = {
   puzzles: Puzzle[];
 };
 
 export const Scene2 = ({ puzzles }: Props) => {
-  const { state } = useGame();
+  const { state, send } = useGame();
   const {
     isModalOpen: isJigsawOpen,
     openModal: openJigsaw,
@@ -28,25 +29,39 @@ export const Scene2 = ({ puzzles }: Props) => {
   } = useModal();
 
   const { solvedPuzzles } = state.context;
-  // const allPuzzlesSolved = puzzles.every((p) => solvedPuzzles[p.id]);
-  console.log(puzzles);
+  const isJigsawSolved = solvedPuzzles[Puzzles.jigsaw.name];
+  const allPuzzlesSolved = puzzles.every((p) => solvedPuzzles[p.id]);
 
-  const background = "/images/scenes/scene2/scene2-background.jpg";
+  useEffect(() => {
+    if (allPuzzlesSolved) {
+      const timer = setTimeout(() => {
+        send({ type: "NEXT" });
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [allPuzzlesSolved, send]);
+
+  const background = "/images/scenes/scene2/scene2-background.png";
 
   return (
     <SceneWrapper backgroundUrl={background}>
       <div className="w-full h-full relative">
         <PuzzleTrigger
-          image={puzzleConfig.jigsaw.thumbnail}
+          image={
+            isJigsawSolved
+              ? puzzleConfig.jigsaw.thumbnailFixed
+              : puzzleConfig.jigsaw.thumbnail
+          }
           alt="Open Jigsaw"
-          className="w-[40px] lg:w-[50px] xl:w-[60px] 2xl:w-[80px] top-[69%] right-[36%]"
+          className="w-[40px] lg:w-[50px] xl:w-[60px] 2xl:w-[80px] top-[69%] right-[52%]"
           action={openJigsaw}
         />
 
         <PuzzleTrigger
           image={puzzleConfig.riddle.thumbnail}
           alt="Open Riddle"
-          className="w-[50px] lg:w-[65px] xl:w-[80px] 2xl:w-[95px] top-[60%] right-[20%]"
+          className="w-[50px] lg:w-[65px] xl:w-[80px] 2xl:w-[95px] top-[60%] right-[18%]"
           action={openRiddle}
         />
 

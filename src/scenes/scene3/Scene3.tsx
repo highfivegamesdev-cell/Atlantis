@@ -1,23 +1,23 @@
 import type { Puzzle } from "@/scenes/config/scenesConfig";
-import type { GameEvent } from "@/scenes/config/gameMachine";
+// import { useGame } from "@/scenes/config/useGame";
+import { SceneWrapper } from "@/components/layout/SceneWrapper";
 
 type Props = {
   puzzles: Puzzle[];
-  solvedPuzzles: Record<string, boolean>;
-  send: (event: GameEvent) => void;
 };
 
-export const Scene3 = ({ send }: Props) => {
-  // const allPuzzlesSolved = puzzles.every((p) => solvedPuzzles[p.id]);
-  const allPuzzlesSolved = true;
+export const Scene3 = ({ puzzles }: Props) => {
+  // const { state } = useGame();
+
+  // const { solvedPuzzles } = state.context;
+
+  console.log(puzzles);
+
+  const background = "/images/scenes/scene3/scene3-background.png";
 
   return (
-    <>
-      <h1>Scene 3</h1>
-
-      {allPuzzlesSolved && (
-        <button onClick={() => send({ type: "NEXT" })}>Next scene</button>
-      )}
-    </>
+    <SceneWrapper backgroundUrl={background}>
+      <div className="w-full h-full relative"></div>
+    </SceneWrapper>
   );
 };

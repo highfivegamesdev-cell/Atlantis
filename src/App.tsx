@@ -4,14 +4,10 @@ import { Scene1, Scene2, Scene3 } from "@/scenes";
 import { scenesConfig } from "@/scenes/config/scenesConfig";
 import { useGame } from "@/scenes/config/useGame";
 
-import { SceneWrapper } from "@/components/layout/SceneWrapper";
-
 Modal.setAppElement("#root");
 
 function App() {
-  const { state, send } = useGame();
-
-  const { solvedPuzzles } = state.context;
+  const { state } = useGame();
 
   const currentScene = scenesConfig.find((scene) => state.matches(scene.id));
   if (!currentScene) return <h2>Game over</h2>;
@@ -22,15 +18,7 @@ function App() {
     case "scene2":
       return <Scene2 puzzles={currentScene.puzzles} />;
     case "scene3":
-      return (
-        <SceneWrapper backgroundUrl="/images/scenes/scene1/scene1-background.png">
-          <Scene3
-            puzzles={currentScene.puzzles}
-            send={send}
-            solvedPuzzles={solvedPuzzles}
-          />
-        </SceneWrapper>
-      );
+      return <Scene3 puzzles={currentScene.puzzles} />;
     default:
       return <h2>Game over</h2>;
   }
