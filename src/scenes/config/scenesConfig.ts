@@ -35,6 +35,10 @@ export const Puzzles = {
     name: "riddleStage2",
     answer: "RIDDLE_STAGE_2_SOLVED",
   },
+  slider: {
+    name: "slider",
+    answer: "SLIDER_SOLVED",
+  },
 } as const;
 
 export const scenesConfig: SceneConfig[] = [
@@ -58,7 +62,7 @@ export const scenesConfig: SceneConfig[] = [
   },
   {
     id: "scene3",
-    puzzles: [{ id: "puzzle5", answer: "SECRET", item: "Mapa 🗺️" }],
+    puzzles: [{ id: Puzzles.slider.name, answer: Puzzles.slider.answer }],
     next: "exit",
   },
 ];

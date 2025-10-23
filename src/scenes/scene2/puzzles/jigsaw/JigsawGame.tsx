@@ -5,20 +5,7 @@ import { useGame } from "@/scenes/config/useGame";
 import { Puzzles } from "@/scenes/config/scenesConfig";
 import { GameEventTypes } from "@/scenes/config/gameMachine";
 import { useTailwindBreakpoint } from "@/lib/hooks/useTailwindBreakpoint";
-
-const canvasConfig: Record<
-  string,
-  { width: number; height: number; pieceSize: number }
-> = {
-  base: { width: 384, height: 224, pieceSize: 60 },
-  md: { width: 684, height: 404, pieceSize: 60 },
-  lg: { width: 984, height: 584, pieceSize: 70 },
-  xl: { width: 984, height: 584, pieceSize: 80 },
-  "2xl": { width: 984, height: 584, pieceSize: 80 },
-  "3xl": { width: 984, height: 584, pieceSize: 80 },
-};
-
-// w-[400px] h-[240px] md:w-[700px] md:h-[420px] lg:w-[1000px] lg:h-[600px] 3xl:w-[1600px] 3xl:h-[960px]
+import { canvasConfig } from "@/scenes/scene2/puzzles/jigsaw/config";
 
 export const JigsawGame = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -26,8 +13,6 @@ export const JigsawGame = () => {
   const id = "jigsaw-puzzle";
 
   const breakpoint = useTailwindBreakpoint();
-
-  console.log(breakpoint);
 
   const width = canvasConfig[breakpoint].width;
   const height = canvasConfig[breakpoint].height;
