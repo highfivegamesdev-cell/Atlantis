@@ -46,7 +46,9 @@ export const Slider = () => {
       setEmptyIndex(index);
 
       if (checkIfSolved(newTiles)) {
-        setIsSolved(true);
+        setTimeout(() => {
+          setIsSolved(true);
+        }, 300);
       }
     }
   };
