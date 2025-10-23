@@ -10,6 +10,7 @@ import { Jigsaw } from "@/scenes/scene2/puzzles/jigsaw/Jigsaw";
 import { SceneWrapper } from "@/components/layout/SceneWrapper";
 import { Riddle } from "@/scenes/scene2/puzzles/riddle/Riddle";
 import { useEffect } from "react";
+import { GameEventTypes } from "../config/gameMachine";
 
 type Props = {
   puzzles: Puzzle[];
@@ -32,6 +33,19 @@ export const Scene2 = ({ puzzles }: Props) => {
   const isJigsawSolved = solvedPuzzles[Puzzles.jigsaw.name];
   const allPuzzlesSolved = puzzles.every((p) => solvedPuzzles[p.id]);
 
+  const solveAllPuzzles = () => {
+    send({
+      type: GameEventTypes.solvePuzzle,
+      puzzleId: Puzzles.riddleStage2.name,
+      answer: Puzzles.riddleStage2.answer,
+    });
+    send({
+      type: GameEventTypes.solvePuzzle,
+      puzzleId: Puzzles.jigsaw.name,
+      answer: Puzzles.jigsaw.answer,
+    });
+  };
+
   useEffect(() => {
     if (allPuzzlesSolved) {
       const timer = setTimeout(() => {
@@ -47,6 +61,12 @@ export const Scene2 = ({ puzzles }: Props) => {
   return (
     <SceneWrapper backgroundUrl={background}>
       <div className="w-full h-full relative">
+        <button
+          onClick={solveAllPuzzles}
+          className="p-6 absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] text-white hover:text-black text-4xl font-bold hover:cursor-pointer"
+        >
+          Go to Scene 3
+        </button>
         <PuzzleTrigger
           image={
             isJigsawSolved
