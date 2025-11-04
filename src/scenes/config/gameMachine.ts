@@ -4,7 +4,6 @@ import { scenesConfig } from "@/scenes/config/scenesConfig";
 import type { SceneConfig } from "@/scenes/config/scenesConfig";
 
 export type GameContext = {
-  // inventory: string[];
   solvedPuzzles: Record<string, boolean>;
   currentScene: string;
 };
