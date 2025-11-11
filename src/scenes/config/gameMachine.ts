@@ -21,10 +21,10 @@ export type GameEvent =
     }
   | { type: typeof GameEventTypes.next };
 
-  export type GameState = {
-      value?: string;
+export type GameState = {
+  value?: string;
   context?: Partial<GameContextType>;
-  }
+};
 
 const buildScenesStates = (room: SceneConfig) => {
   return {

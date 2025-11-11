@@ -14,9 +14,9 @@ export const GameContext = createContext<{
 
 const persistedState = loadGameState();
 const gameMachine = createGameMachine({
-    value: persistedState?.value,
-    context: persistedState?.context,
-  });
+  value: persistedState?.value,
+  context: persistedState?.context,
+});
 
 export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [state, send] = useMachine(gameMachine);
