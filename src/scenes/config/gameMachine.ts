@@ -3,7 +3,7 @@ import { createMachine, assign } from "xstate";
 import { scenesConfig } from "@/scenes/config/scenesConfig";
 import type { SceneConfig } from "@/scenes/config/scenesConfig";
 
-export type GameContext = {
+export type GameContextType = {
   solvedPuzzles: Record<string, boolean>;
   currentScene: string;
 };
@@ -20,6 +20,11 @@ export type GameEvent =
       answer?: string;
     }
   | { type: typeof GameEventTypes.next };
+
+export type GameState = {
+  value?: string;
+  context?: Partial<GameContextType>;
+};
 
 const buildScenesStates = (room: SceneConfig) => {
   return {
@@ -49,7 +54,7 @@ const buildScenesStates = (room: SceneConfig) => {
         },
         NEXT: {
           target: room.next ?? "exit",
-          guard: ({ context }: { context: GameContext }) =>
+          guard: ({ context }: { context: GameContextType }) =>
             room.puzzles.every((puzzle) => context.solvedPuzzles[puzzle.id]),
           actions: assign(({ context }) => ({
             ...context,
@@ -61,7 +66,7 @@ const buildScenesStates = (room: SceneConfig) => {
   };
 };
 
-export const createGameMachine = () => {
+export const createGameMachine = (initialState?: GameState) => {
   const states: Record<string, any> = {};
   scenesConfig.forEach((scene) =>
     Object.assign(states, buildScenesStates(scene)),
@@ -71,13 +76,14 @@ export const createGameMachine = () => {
 
   return createMachine({
     id: "game",
-    initial: scenesConfig[0].id,
+    initial: initialState?.value ?? scenesConfig[0].id,
     types: {} as {
-      context: GameContext;
+      context: GameContextType;
     },
     context: {
       solvedPuzzles: {},
-      currentScene: scenesConfig[0].id,
+      currentScene: initialState?.context?.currentScene ?? scenesConfig[0].id,
+      ...initialState?.context,
     },
     states,
   });
