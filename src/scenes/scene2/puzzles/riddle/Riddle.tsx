@@ -45,11 +45,14 @@ export const Riddle = ({ close }: Props) => {
       </button>
 
       <div className="w-full h-full flex flex-col items-center justify-center gap-2">
-        <img
-          className="w-[50%] mt-16"
-          src={puzzleConfig.riddle.text}
-          alt="Riddle Text"
-        />
+        <p className="mt-14 w-[50%] text-xs lg:text-sm font-bold">
+          Four guardians, four flames, standing proud in line. The First to
+          light his fire dared not march on the end. The Second, by the First,
+          played a woeful lament. The Third kept close to his faithful beast.
+          The Fourth marched not beside the First, yet like the Second, played a
+          tune. And thus they stood o’er their queen, who slept beneath
+          flickering stars.
+        </p>
         <div className="flex gap-8">
           {Array.from({ length: 4 }).map((_, index) => (
             <button
@@ -64,7 +67,7 @@ export const Riddle = ({ close }: Props) => {
               onClick={handleClick}
             >
               <img
-                className="w-[80px]"
+                className="w-[50px] lg:w-[80px]"
                 src={`/images/scenes/scene2/puzzles/statue${index + 1}-icon.png`}
                 alt={`Riddle Option ${index + 1}`}
               />
