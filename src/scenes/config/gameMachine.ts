@@ -81,7 +81,7 @@ export const createGameMachine = (initialState?: GameState) => {
       context: GameContextType;
     },
     context: {
-      solvedPuzzles: {},
+      solvedPuzzles: initialState?.context?.solvedPuzzles ??{},
       currentScene: initialState?.context?.currentScene ?? scenesConfig[0].id,
       ...initialState?.context,
     },
