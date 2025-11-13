@@ -8,7 +8,7 @@ type Props = {
 
 export const PuzzleCompleted = ({ text, image, close }: Props) => {
   return (
-    <PuzzleCompletedWrapper>
+    <PuzzleCompletedWrapper smallSize={!image}>
       <button
         onClick={close}
         className="absolute top-[1%] right-[3%] text-black hover:text-gray-500 text-4xl font-bold hover:cursor-pointer"
