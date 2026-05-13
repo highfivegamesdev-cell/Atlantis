@@ -16,7 +16,8 @@ const getSceneConfig = (sceneId: string) => {
   return scene;
 };
 
-const createSceneLoader = (sceneId: string) => () => getSceneConfig(sceneId).puzzles;
+const createSceneLoader = (sceneId: string) => () =>
+  getSceneConfig(sceneId).puzzles;
 
 const CurrentSceneRedirect = () => <Navigate to={routes.scene1} replace />;
 

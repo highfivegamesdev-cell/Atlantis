@@ -10,12 +10,11 @@ export const GameEventTypes = {
   solvePuzzle: "SOLVE_PUZZLE",
 } as const;
 
-export type GameEvent =
-  | {
-      type: typeof GameEventTypes.solvePuzzle;
-      puzzleId: string;
-      answer?: string;
-    };
+export type GameEvent = {
+  type: typeof GameEventTypes.solvePuzzle;
+  puzzleId: string;
+  answer?: string;
+};
 
 export type GameState = {
   context?: Partial<GameContextType>;

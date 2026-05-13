@@ -11,7 +11,7 @@ import { PuzzleWrapper } from "@/components/layout/PuzzleWrapper";
 
 type Props = {
   close: () => void;
-}
+};
 
 export const Slider = ({ close }: Props) => {
   const totalTiles = GRID_SIZE * GRID_SIZE;
