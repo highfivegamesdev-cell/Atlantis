@@ -55,7 +55,7 @@ export const Scene3 = ({ puzzles }: Props) => {
               close={closeSlider}
             />
           ) : (
-            <Slider />
+            <Slider close={closeSlider} />
           )}
         </PuzzleModal>
       </div>

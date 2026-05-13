@@ -9,7 +9,11 @@ import { GameEventTypes } from "@/scenes/config/gameMachine";
 import { useGame } from "@/scenes/config/useGame";
 import { PuzzleWrapper } from "@/components/layout/PuzzleWrapper";
 
-export const Slider = () => {
+type Props = {
+  close: () => void;
+}
+
+export const Slider = ({ close }: Props) => {
   const totalTiles = GRID_SIZE * GRID_SIZE;
   const [tiles, setTiles] = useState<Tile[]>([]);
   const [emptyIndex, setEmptyIndex] = useState(totalTiles - 1);
