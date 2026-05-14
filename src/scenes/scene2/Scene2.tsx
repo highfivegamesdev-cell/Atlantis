@@ -10,13 +10,16 @@ import { Jigsaw } from "@/scenes/scene2/puzzles/jigsaw/Jigsaw";
 import { SceneWrapper } from "@/components/layout/SceneWrapper";
 import { Riddle } from "@/scenes/scene2/puzzles/riddle/Riddle";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { routes } from "@/router/routes";
 
 type Props = {
   puzzles: Puzzle[];
 };
 
 export const Scene2 = ({ puzzles }: Props) => {
-  const { state, send } = useGame();
+  const { state } = useGame();
+  const navigate = useNavigate();
   const {
     isModalOpen: isJigsawOpen,
     openModal: openJigsaw,
@@ -35,12 +38,12 @@ export const Scene2 = ({ puzzles }: Props) => {
   useEffect(() => {
     if (allPuzzlesSolved) {
       const timer = setTimeout(() => {
-        send({ type: "NEXT" });
+        navigate(routes.scene3);
       }, 2000);
 
       return () => clearTimeout(timer);
     }
-  }, [allPuzzlesSolved, send]);
+  }, [allPuzzlesSolved, navigate]);
 
   const background = "/images/scenes/scene2/scene2-background.png";
 

@@ -16,13 +16,16 @@ import { Riddle } from "@/scenes/scene1/puzzles/riddle/Riddle";
 import { ShapeMatcher } from "@/scenes/scene1/puzzles/shapeMatcher/ShapeMatcher";
 import { SceneWrapper } from "@/components/layout/SceneWrapper";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { routes } from "@/router/routes";
 
 type Props = {
   puzzles: Puzzle[];
 };
 
 export const Scene1 = ({ puzzles }: Props) => {
-  const { state, send } = useGame();
+  const { state } = useGame();
+  const navigate = useNavigate();
   const {
     isModalOpen: isSudokuOpen,
     openModal: openSudoku,
@@ -54,12 +57,12 @@ export const Scene1 = ({ puzzles }: Props) => {
   useEffect(() => {
     if (allPuzzlesSolved) {
       const timer = setTimeout(() => {
-        send({ type: "NEXT" });
+        navigate(routes.scene2);
       }, 5000);
 
       return () => clearTimeout(timer);
     }
-  }, [allPuzzlesSolved, send]);
+  }, [allPuzzlesSolved, navigate]);
 
   return (
     <SceneWrapper backgroundUrl={background}>
